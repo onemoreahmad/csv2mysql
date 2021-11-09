@@ -12,7 +12,7 @@ class SMSFlowBackImport implements ToModel, WithStartRow
     public function model(array $row)
     {
         $model = new SMSFlowBack();
-        $model->DT = \Carbon\Carbon::parse($row[1]); 
+        $model->Date = \Carbon\Carbon::parse($row[1]); 
         $model->Remarks = $row[2]; 
         $model->ChokeSize1 = $row[3]; 
         $model->US_DesanderPressurePressure = $row[4]; 

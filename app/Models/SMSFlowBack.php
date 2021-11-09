@@ -9,6 +9,6 @@ class SMSFlowBack extends Model
 {
     use HasFactory;
 
-    protected $table = 'SMSFlowBack';
-    public $timestamps = false;
+    protected $table = 'sms_flow_back';
+    // public $timestamps = false;
 }

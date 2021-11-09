@@ -13,13 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-use App\Models\SMSFlowBack;
-use App\Imports\SMSFlowBackImport;
-use Maatwebsite\Excel\Facades\Excel;
 
 // form 
-Route::get('/', function () {
-    return view('form', ['records' => SMSFlowBack::paginate(50)]);
+Route::get('/form', function () {
+    return view('form', ['records' => \App\Models\SMSFlowBack::paginate(50)]);
 });
 
 // process and show data .. 
@@ -29,7 +26,17 @@ Route::post('/data', function () {
         'file' => 'required',
     ]);
  
-    Excel::import(new SMSFlowBackImport, request()->file('file'));
+    Excel::import(new \App\Imports\SMSFlowBackImport, request()->file('file'));
 
     return redirect('/')->with('success', 'Data imported successfully.');   
 });
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
