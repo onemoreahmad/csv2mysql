@@ -20,8 +20,8 @@
 
         <!-- Scripts -->
     </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100 p-10">
+    <body class="font-sans antialiased bg-gray-100">
+        <div class="min-h-screen mx-auto container py-10 px-3 md:px-0">
             <!-- Page Content -->
             <main>
                 {{ $slot }}
