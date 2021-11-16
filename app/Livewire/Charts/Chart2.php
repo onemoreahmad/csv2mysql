@@ -18,7 +18,10 @@ class Chart2 extends Component
                                 ->get()
                                 ->mapWithKeys(function ($item, $key) {
                                     // return   [Carbon::parse($item['Date'])->format('Y m') =>   $item['US_DesanderPressurePressure']  ];
-                                    return   [ $item['Date'] => $item['US_DesanderPressurePressure']  ];
+                                    return   [ $item['Date'] => [ 
+                                            'US_DesanderPressurePressure' => $item['US_DesanderPressurePressure'],
+                                            'SEPARATOR_SeparatorPressure' => $item['SEPARATOR_SeparatorPressure']
+                                            ]  ];
                                     // return   [$key => [$item['Date'], $item['US_DesanderPressurePressure']] ];
                                 })
                                 ;
