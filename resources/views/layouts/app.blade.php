@@ -17,8 +17,6 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}" />
-
-        <!-- Scripts -->
     </head>
     <body class="font-sans antialiased bg-gray-100">
         <div class="min-h-screen mx-auto container py-10 px-3 md:px-0">
@@ -26,9 +24,11 @@
             <main>
                 {{ $slot }}
             </main>
-
-            <livewire:scripts />
-            <script src="{{ asset('js/app.js') }}" defer></script>
         </div>
+
+        <!-- Scripts -->
+        <livewire:scripts />
+        <script src="{{ asset('js/app.js') }}" defer></script>
+        @stack('js')
     </body>
 </html>
