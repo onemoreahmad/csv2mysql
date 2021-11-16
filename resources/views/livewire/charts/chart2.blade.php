@@ -1,8 +1,7 @@
 <div>
-    <div class="bg-white p-4" id="chart1"></div>
+    <div class="bg-white p-4" id="chart2"></div>
     @push('js')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-    
     <script>
    
         document.addEventListener('livewire:load', function () {
@@ -17,29 +16,41 @@
                     data: @js($info->values()) 
                 }],
                 chart: {
-                    type: 'area',
+                    type: 'scatter',
                     stacked: false,
                     height: 350,
                     zoom: {
-                        enabled: false
+                        type: 'xy'
                     },
                 },
+                grid: {
+          xaxis: {
+            lines: {
+              show: true
+            }
+          },
+          yaxis: {
+            lines: {
+              show: true
+            }
+          },
+        },
                 dataLabels: {
                     enabled: false
                 },
-                markers: {
-                    size: 0,
-                },
-                fill: {
-                type: 'gradient',
-                gradient: {
-                    shadeIntensity: 1,
-                    inverseColors: false,
-                    opacityFrom: 0.45,
-                    opacityTo: 0.05,
-                    stops: [20, 100, 100, 100]
-                    },
-                },
+                // markers: {
+                //     size: 0,
+                // },
+                // fill: {
+                // type: 'gradient',
+                // gradient: {
+                //     shadeIntensity: 1,
+                //     inverseColors: false,
+                //     opacityFrom: 0.45,
+                //     opacityTo: 0.05,
+                //     stops: [20, 100, 100, 100]
+                //     },
+                // },
                 yaxis: {
                     labels: {
                         style: {
@@ -51,12 +62,12 @@
                         //     // return (val / 1000000).toFixed(2);
                         // },
                     },
-                    axisBorder: {
-                        show: false,
-                    },
-                    axisTicks: {
-                        show: false
-                    }
+                    // axisBorder: {
+                    //     show: false,
+                    // },
+                    // axisTicks: {
+                    //     show: false
+                    // }
                 },
                 // xaxis: {
                 //     categories: @js($info->keys()),
@@ -66,8 +77,8 @@
                 xaxis: {
                     categories: @js($info->keys()),
                     // tickAmount: 4,
-                    tickPlacement: 'on',
-                    tickPlacement: 'between',
+                    // tickPlacement: 'on',
+                    // tickPlacement: 'between',
 
                     labels: {
                         rotate: -30,
@@ -79,25 +90,23 @@
                     }
                 },
                 title: {
-                    text: 'U/S Desander Pressure',
+                    text: 'Scatter',
                     align: 'left',
                     offsetX: 14
                 },
                 tooltip: {
-                shared: true
+                // shared: true
                 },
-                legend: {
-                    position: 'top',
-                    horizontalAlign: 'right',
-                    offsetX: -10
-                }
+                // legend: {
+                //     position: 'top',
+                //     horizontalAlign: 'right',
+                //     offsetX: -10
+                // }
                 };
 
-                var chart = new ApexCharts(document.querySelector("#chart1"), options);
+                var chart = new ApexCharts(document.querySelector("#chart2"), options);
                 chart.render();
-      
-
-                
+         
         })
     </script>
     @endpush

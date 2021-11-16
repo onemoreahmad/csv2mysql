@@ -13,6 +13,7 @@
         "
     >
         <livewire:charts.chart1 />
+        <livewire:charts.chart2 />
     </div>
     <livewire:sms-flow-data-list />
 </div>
