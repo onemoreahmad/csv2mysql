@@ -19,6 +19,7 @@
         <link rel="stylesheet" href="{{ asset('css/app.css') }}" />
     </head>
     <body class="font-sans antialiased bg-gray-100">
+        @include('layouts.navigation')
         <div class="min-h-screen mx-auto container py-10 px-3 md:px-0">
             <!-- Page Content -->
             <main>
