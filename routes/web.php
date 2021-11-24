@@ -1,9 +1,8 @@
 <?php
- 
- Route::get('/', \App\Livewire\Home::class)->middleware(['auth'])->name('home');
- 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth'])->name('dashboard');
+
+ Route::middleware(['auth'])->group(function () {
+    Route::get('/', \App\Livewire\Home::class)->name('home');
+    Route::get('/data', \App\Livewire\AllData::class)->name('data');
+});
 
 require __DIR__.'/auth.php';

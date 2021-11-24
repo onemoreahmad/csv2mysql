@@ -1,6 +1,13 @@
-<div class="mb-10">
+<div x-data="{ open: false }" class="mb-10">
+  <button @click="open = ! open" class="p-3 rounded border bg-gray-600 text-white hover:bg-gray-700 flex items-center gap-x-3 inline-block mb-3"> 
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
+    </svg>
+    Show import data form
+    
+  </button>
   
-    <form wire:submit.prevent="submit" method="post" enctype="multipart/form-data" class="bg-white p-5 rounded-sm">
+    <form x-cloak x-show="open" wire:submit.prevent="submit" method="post" enctype="multipart/form-data" class="bg-white p-5 rounded-sm my-3 block">
         @csrf
 
         @if ($success)

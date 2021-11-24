@@ -11,11 +11,14 @@
                 </div>
 
                 <!-- Navigation Links -->
-                {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex h-16">
                     <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                </div> --}}
+                    <x-nav-link :href="route('data')" :active="request()->routeIs('data')">
+                        {{ __('All Data') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             @auth

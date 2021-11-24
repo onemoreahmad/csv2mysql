@@ -16,6 +16,7 @@
         <livewire:styles />
 
         <!-- Styles -->
+        <style>[x-cloak] { display: none !important; }</style>
         <link rel="stylesheet" href="{{ asset('css/app.css') }}" />
     </head>
     <body class="font-sans antialiased bg-gray-100">
