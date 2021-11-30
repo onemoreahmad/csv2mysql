@@ -10,107 +10,111 @@ use Maatwebsite\Excel\Concerns\WithValidation;
 
 class SMSFlowBackImport implements ToModel, WithStartRow
 {
-    public $field_name;
-    public $well_number;
-
-    function __construct($field_name, $well_number) {
-        $this->field_name = $field_name;
-        $this->well_number = $well_number;
+    public $wellId;
+    public $wellNumber;
+    public $fieldName;
+ 
+    function __construct($wellId, $wellNumber, $fieldName) {
+        $this->wellId =  $wellId;
+        $this->wellNumber =  $wellNumber;
+        $this->fieldName =  $fieldName;
     }
  
     public function model(array $row)
     {
+      
         $model = new SMSFlowBack();
-        $model->field_name = $this->field_name; 
-        $model->well_number = $this->well_number; 
-
-        $model->Date = \Carbon\Carbon::parse($row[1]); 
-        $model->Remarks = $row[2]; 
-        $model->ChokeSize1 = $row[3]; 
-        $model->US_DesanderPressurePressure = $row[4]; 
-        $model->US_FilterPressure = $row[5]; 
-        $model->US_ChokePressure1 = $row[6]; 
-        $model->US_DesanderTemperatureTemp = $row[7]; 
-        $model->DS_ChokePressure1 = $row[8]; 
-        $model->DS_ChokeTemp1 = $row[9]; 
-        $model->ChokeSize2 = $row[10]; 
-        $model->DS_ChokePressure2 = $row[11]; 
-        $model->DS_ChokeTemp2 = $row[12]; 
-        $model->GasVelocity = $row[13]; 
-        $model->BSWatChoke = $row[14]; 
-        $model->ProdLinePressure = $row[15]; 
-
+        $model->well_id = $this->wellId; 
+        $model->well_number = $this->wellNumber; 
+        $model->field_name = $this->fieldName; 
+        $model->user_id = auth()->id() ?: null; 
  
+        // $model->Date = \Carbon\Carbon::createFromFormat('n/j/y H:i', $row[1]); 
+        $model->Date = \Carbon\Carbon::parse($row[1]); 
+        $model->Remarks = data_get($row, '2', 0);
+        $model->ChokeSize1 = data_get($row, '3', 0);
+        $model->US_DesanderPressurePressure = data_get($row, '4', 0);
+        $model->US_FilterPressure = data_get($row, '5', 0);
+        $model->US_ChokePressure1 = data_get($row, '6', 0);
+        $model->US_DesanderTemperatureTemp = data_get($row, '7', 0);
+        $model->DS_ChokePressure1 = data_get($row, '8', 0);
+        $model->DS_ChokeTemp1 = data_get($row, '9', 0);
+        $model->ChokeSize2 = data_get($row, '10', 0);
+        $model->DS_ChokePressure2 = data_get($row, '11', 0);
+        $model->DS_ChokeTemp2 = data_get($row, '12', 0);
+        $model->GasVelocity = data_get($row, '13', 0);
+        $model->BSWatChoke = data_get($row, '14', 0);
+        $model->ProdLinePressure = data_get($row, '15', 0);
 
-        $model->SEPARATOR_SeparatorPressure = $row[16];
-        $model->SEPARATOR_GasTemp = $row[17];
-        $model->SEPARATOR_DiffPressure = $row[18];
-        $model->SEPARATOR_BSWatOiline = $row[19];
-        $model->SEPARATOR_OrifPlateSizeDiam = $row[20];
-        $model->SEPARATOR_OilTemp = $row[21];
+        $model->SEPARATOR_SeparatorPressure = data_get($row, '16', 0);
+        $model->SEPARATOR_GasTemp = data_get($row, '17', 0);
+        $model->SEPARATOR_DiffPressure = data_get($row, '18', 0);
+        $model->SEPARATOR_BSWatOiline = data_get($row, '19', 0);
+        $model->SEPARATOR_OrifPlateSizeDiam = data_get($row, '20', 0);
+        $model->SEPARATOR_OilTemp = data_get($row, '21', 0);
 
-        $model->OilMetercorrectionfactor = $row[22];
-        $model->Watermetercorrectionfactor = $row[23];
+        $model->OilMetercorrectionfactor = data_get($row, '22', 0);
+        $model->Watermetercorrectionfactor = data_get($row, '23', 0);
 
-        $model->GasRate_MMSCFD = $row[24];
-        $model->OilRate_STOBD = $row[25];
-        $model->WaterRate_STWBD = $row[26];
-        $model->CGR = $row[27];
-        $model->GORatSC = $row[28];
-        $model->IPRatSurface = $row[29];
-
-
-        $model->EstGasRateNewEqu = $row[30];
-        $model->EstGasRateOldEqu = $row[31];
-
-        $model->OilRate_BBLS = $row[31];
-        $model->Waterrate_BBLS = $row[32];
-        $model->GORatSepConditions = $row[33];
-
-        $model->GasSpecificGravity = $row[34];
-        $model->CO2 = $row[35];
-        $model->H2S = $row[36];
-        $model->Z_factor = $row[37];
-        $model->Viscosity = $row[38];
-        $model->OilGravityat60F = $row[39];
-        $model->OilShrinkageat60F_1_SHK = $row[40];
-        $model->WaterPH = $row[41];
-        $model->Chloride = $row[42];
-
-        $model->Oil_Bbls = $row[43];
-        $model->Water_Bbls = $row[44];
-
-        $model->Gas_MMSCF = $row[45];
-        $model->Oil_STOB = $row[46];
-        $model->Water_STWB = $row[47];
-
-        $model->TCA_2x5_Psig = $row[48];
-        $model->TCA_2x5_F = $row[49];
-        $model->TCA_CCA_5x9_Psig = $row[50];
-        $model->TCA_CCA_5x9_F = $row[51];
-        $model->CCA_9x13_Psig = $row[52];
-        $model->CCA_9x13_F = $row[53];
-        $model->CCA_13x18_Psig = $row[54];
-        $model->CCA_13x18_F = $row[55];
+        $model->GasRate_MMSCFD = data_get($row, '24', 0);
+        $model->OilRate_STOBD = data_get($row, '25', 0);
+        $model->WaterRate_STWBD = data_get($row, '26', 0);
+        $model->CGR = data_get($row, '27', 0);
+        $model->GORatSC = data_get($row, '28', 0);
+        $model->IPRatSurface = data_get($row, '29', 0);
 
 
-        $model->VENTURI_StaticPressure = $row[56];
-        $model->VENTURI_DiffPressure = $row[57];
-        $model->VENTURI_Temp = $row[58];
+        $model->EstGasRateNewEqu = data_get($row, '30', 0);
+        $model->EstGasRateOldEqu = data_get($row, '31', 0);
+
+        $model->OilRate_BBLS = data_get($row, '31', 0);
+        $model->Waterrate_BBLS = data_get($row, '32', 0);
+        $model->GORatSepConditions = data_get($row, '33', 0);
+
+        $model->GasSpecificGravity = data_get($row, '34', 0);
+        $model->CO2 = data_get($row, '35', 0);
+        $model->H2S = data_get($row, '36', 0);
+        $model->Z_factor = data_get($row, '37', 0);
+        $model->Viscosity = data_get($row, '38', 0);
+        $model->OilGravityat60F = data_get($row, '39', 0);
+        $model->OilShrinkageat60F_1_SHK = data_get($row, '40', 0);
+        $model->WaterPH = data_get($row, '41', 0);
+        $model->Chloride = data_get($row, '42', 0);
+
+        $model->Oil_Bbls = data_get($row, '43', 0);
+        $model->Water_Bbls = data_get($row, '44', 0);
+
+        $model->Gas_MMSCF = data_get($row, '45', 0);
+        $model->Oil_STOB = data_get($row, '46', 0);
+        $model->Water_STWB = data_get($row, '47', 0);
+
+        $model->TCA_2x5_Psig = data_get($row, '48', 0);
+        $model->TCA_2x5_F = data_get($row, '49', 0);
+        $model->TCA_CCA_5x9_Psig = data_get($row, '50', 0);
+        $model->TCA_CCA_5x9_F = data_get($row, '51', 0);
+        $model->CCA_9x13_Psig = data_get($row, '52', 0);
+        $model->CCA_9x13_F = data_get($row, '53', 0);
+        $model->CCA_13x18_Psig = data_get($row, '54', 0);
+        $model->CCA_13x18_F = data_get($row, '55', 0);
+
+
+        $model->VENTURI_StaticPressure = data_get($row, '56', 0);
+        $model->VENTURI_DiffPressure = data_get($row, '57', 0);
+        $model->VENTURI_Temp = data_get($row, '58', 0);
         
-        $model->TypeofRecovery = $row[59];
-        $model->Sand_Percentage = $row[60];
-        $model->Prop_Percentage = $row[61];
-        $model->Sand_Lbs = $row[62];
-        $model->Prop_Lbs = $row[63];
-        $model->CummSand = $row[64];
-        $model->CummProp = $row[65];
-        $model->RecoveryWeight = $row[66];
-        $model->CummWeight = $row[67];
-        $model->DeltaWeightPerHour = $row[68];
-        $model->DeltaWeightperHourperMMSCFD = $row[69];
-        $model->TargetSolidslbs = $row[70];
-        $model->Criteria = $row[71];
+        $model->TypeofRecovery = data_get($row, '59', 0);
+        $model->Sand_Percentage = data_get($row, '60', 0);
+        $model->Prop_Percentage = data_get($row, '61', 0);
+        $model->Sand_Lbs = data_get($row, '62', 0);
+        $model->Prop_Lbs = data_get($row, '63', 0);
+        $model->CummSand = data_get($row, '64', 0);
+        $model->CummProp = data_get($row, '65', 0);
+        $model->RecoveryWeight = data_get($row, '66', 0);
+        $model->CummWeight = data_get($row, '67', 0);
+        $model->DeltaWeightPerHour = data_get($row, '68', 0);
+        $model->DeltaWeightperHourperMMSCFD = data_get($row, '69', 0);
+        $model->TargetSolidslbs = data_get($row, '70', 0);
+        $model->Criteria = data_get($row, '71', 0);
 
         return $model; 
     }

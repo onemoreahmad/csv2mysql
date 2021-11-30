@@ -12,8 +12,7 @@ class Chart1 extends Component
  
     public function mount()
     { 
-        $this->info = SMSFlowBack::whereBetween('Date', [(new Carbon)->subDays(360)->startOfDay()->toDateString(), (new Carbon)->now()->endOfDay()->toDateString()])
-                                ->limit(12)
+        $this->info = SMSFlowBack::limit(12)
                                 // ->pluck('US_DesanderPressurePressure', 'Date')
                                 ->get()
                                 ->mapWithKeys(function ($item, $key) {

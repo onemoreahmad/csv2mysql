@@ -11,4 +11,9 @@ class SMSFlowBack extends Model
 
     protected $table = 'sms_flow_back';
     // public $timestamps = false;
+
+    public function well()
+    {
+        return $this->belongsTo(Well::class);
+    }
 }

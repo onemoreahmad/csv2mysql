@@ -15,8 +15,11 @@ class CreateSmsFlowBackTable extends Migration
     {
         Schema::create('sms_flow_back', function (Blueprint $table) {
             $table->id();
-            $table->string('field_name', 50)->index();
-            $table->string('well_number', 10)->index();
+            $table->unsignedBigInteger('well_id')->index(); 
+            $table->unsignedBigInteger('user_id')->nullable()->index(); 
+
+            $table->string('field_name', 50)->nullable()->index();
+            $table->string('well_number', 10)->nullable()->index();
 
             $table->timestamp('Date')->nullable();
             $table->text('Remarks')->nullable();

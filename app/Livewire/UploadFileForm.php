@@ -5,6 +5,7 @@ namespace App\Livewire;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Maatwebsite\Excel\HeadingRowImport;
+use App\Models\Well;
 
 class UploadFileForm extends Component
 {
@@ -32,9 +33,14 @@ class UploadFileForm extends Component
         if(!$well_number){
             dd('Well number not found.');
         }
-  
+
+       
+        $well = Well::firstOrCreate(
+            ['field_name' =>  $field_name, 'well_number' => $well_number]
+        );
+ 
         // import all data
-        \Excel::import(new \App\Imports\SMSFlowBackImport($field_name, $well_number), $this->file);
+        \Excel::import(new \App\Imports\SMSFlowBackImport($well->id, $well->well_number, $well->field_name), $this->file);
 
         $this->success = true;
         $this->emit('fileUploaded');
