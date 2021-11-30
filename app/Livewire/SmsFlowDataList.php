@@ -14,7 +14,7 @@ class SmsFlowDataList extends Component
 
     public function render()
     {
-        $columns = SMSFlowBack::first()->attributesToArray();
+        $columns = SMSFlowBack::first() ? SMSFlowBack::first()->attributesToArray() : [] ;
    
         // $columns  = \Schema::getColumnListing((new SMSFlowBack)->getTable());
         return view('livewire.sms-flow-data-list', ['records' => SMSFlowBack::latest()->paginate(50), 'columns' => array_keys($columns)]);
