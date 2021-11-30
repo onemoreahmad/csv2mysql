@@ -16,4 +16,5 @@ class SMSFlowBack extends Model
     {
         return $this->belongsTo(Well::class);
     }
+ 
 }
