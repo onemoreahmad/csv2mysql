@@ -4,28 +4,14 @@ namespace App\Livewire\Charts;
 
 use Livewire\Component;
 use App\Models\SMSFlowBack;
-use Carbon\Carbon;
-
+ 
 class Chart2 extends Component
 {
     public $info;
  
     public function mount()
     { 
-        $this->info = SMSFlowBack::whereBetween('Date', [(new Carbon)->subDays(360)->startOfDay()->toDateString(), (new Carbon)->now()->endOfDay()->toDateString()])
-                                ->limit(12)
-                                // ->pluck('US_DesanderPressurePressure', 'Date')
-                                ->get()
-                                ->mapWithKeys(function ($item, $key) {
-                                    // return   [Carbon::parse($item['Date'])->format('Y m') =>   $item['US_DesanderPressurePressure']  ];
-                                    return   [ $item['Date'] => [ 
-                                            'US_DesanderPressurePressure' => $item['US_DesanderPressurePressure'],
-                                            'SEPARATOR_SeparatorPressure' => $item['SEPARATOR_SeparatorPressure']
-                                            ]  ];
-                                    // return   [$key => [$item['Date'], $item['US_DesanderPressurePressure']] ];
-                                })
-                                ;
-  
+        $this->info = SMSFlowBack::limit(100)->get();
     }
 
     public function render()

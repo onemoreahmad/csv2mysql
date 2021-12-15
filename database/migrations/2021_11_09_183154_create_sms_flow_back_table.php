@@ -18,7 +18,7 @@ class CreateSmsFlowBackTable extends Migration
             $table->unsignedBigInteger('well_id')->index(); 
             $table->unsignedBigInteger('user_id')->nullable()->index(); 
 
-            $table->string('field_name', 50)->nullable()->index();
+            $table->string('well_name', 50)->nullable()->index();
             $table->string('well_number', 10)->nullable()->index();
 
             $table->timestamp('Date')->nullable();

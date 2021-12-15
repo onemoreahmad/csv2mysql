@@ -26,7 +26,7 @@ class SMSFlowBackImport implements ToModel, WithStartRow
         $model = new SMSFlowBack();
         $model->well_id = $this->wellId; 
         $model->well_number = $this->wellNumber; 
-        $model->field_name = $this->fieldName; 
+        $model->well_name = $this->fieldName; 
         $model->user_id = auth()->id() ?: null; 
  
         // $model->Date = \Carbon\Carbon::createFromFormat('n/j/y H:i', $row[1]); 

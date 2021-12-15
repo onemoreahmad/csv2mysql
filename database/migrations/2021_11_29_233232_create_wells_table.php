@@ -15,7 +15,7 @@ class CreateWellsTable extends Migration
     {
         Schema::create('wells', function (Blueprint $table) {
             $table->id();
-            $table->string('field_name', 100);
+            $table->string('well_name', 100);
             $table->string('well_number', 20);
             $table->json('meta')->nullable();
             $table->timestamps();

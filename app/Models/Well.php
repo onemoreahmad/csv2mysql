@@ -10,7 +10,7 @@ class Well extends Model
     use HasFactory;
 
     protected $fillable = [
-        'field_name',
+        'well_name',
         'well_number',
     ];
     

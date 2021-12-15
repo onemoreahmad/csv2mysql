@@ -21,9 +21,9 @@ class UploadFileForm extends Component
         ]);
    
         // get field name 
-        $headings_to_get_field_name = (new HeadingRowImport(2))->toArray($this->file);
-        $field_name = data_get(collect($headings_to_get_field_name)->flatten(), '14');
-        if(!$field_name){
+        $headings_to_get_well_name = (new HeadingRowImport(2))->toArray($this->file);
+        $well_name = data_get(collect($headings_to_get_well_name)->flatten(), '14');
+        if(!$well_name){
             dd('Field name not found.');
         }
 
@@ -36,11 +36,11 @@ class UploadFileForm extends Component
 
        
         $well = Well::firstOrCreate(
-            ['field_name' =>  $field_name, 'well_number' => $well_number]
+            ['well_name' =>  $well_name, 'well_number' => $well_number]
         );
  
         // import all data
-        \Excel::import(new \App\Imports\SMSFlowBackImport($well->id, $well->well_number, $well->field_name), $this->file);
+        \Excel::import(new \App\Imports\SMSFlowBackImport($well->id, $well->well_number, $well->well_name), $this->file);
 
         $this->success = true;
         $this->emit('fileUploaded');
