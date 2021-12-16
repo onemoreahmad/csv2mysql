@@ -3,13 +3,27 @@
     @push('js')
         <script>
             document.addEventListener('livewire:load', function() {
-                // Get chart data grouped by well name with values of min and max of US_DesanderPressurePressure field values
                 const data = @js($info);
 
+                // Get object of arrays grouped by well name, in which values are US_DesanderPressurePressure
+                const seriesData = data.reduce((acc, item) => {
+                    if (acc[item.well_name]) {
+                        return {
+                            ...acc,
+                            [item.well_name]: [...acc[item.well_name], item.US_DesanderPressurePressure]
+                        };
+                    } else {
+                        return {
+                            ...acc,
+                            [item.well_name]: [item.US_DesanderPressurePressure]
+                        };
+                    }
+                }, {});
+
                 // Get series input data by structuring above variable
-                const minValuesArr = data.map(item => item.minVal);
-                const maxValuesArr = data.map(item => item.maxVal);
-                const wellNamesArr = data.map(item => item.well_name);
+                const minValuesArr = Object.keys(seriesData).map(key => Math.min(...seriesData[key]));
+                const maxValuesArr = Object.keys(seriesData).map(key => Math.max(...seriesData[key]));
+                const wellNamesArr = Object.keys(seriesData).map(key => key);
 
                 var options = {
                     series: [{
