@@ -10,11 +10,8 @@ class Chart3Test extends Component
     public $info;
  
     public function mount()
-    { 
-        // this is just a test .. 
-        $this->info = SMSFlowBack::limit(12)->get()->mapWithKeys(function ($item, $key) {
-                return   [ $item['Date'] => $item['US_DesanderPressurePressure']  ];
-            });
+    {
+        $this->info = SMSFlowBack::orderBy('Date')->get();
     }
 
     public function render()
