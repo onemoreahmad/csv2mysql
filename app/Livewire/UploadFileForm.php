@@ -13,7 +13,12 @@ class UploadFileForm extends Component
  
     public $file;
     public $success = false;
-  
+ 
+    public function mount()
+    {
+        $this->success = request()->success ?: false;
+    }
+
     public function submit()
     {
         $this->validate([
@@ -45,6 +50,7 @@ class UploadFileForm extends Component
 
         $this->success = true;
         $this->emit('fileUploaded');
+        return redirect()->to('/data?success=true');
     }
   
     public function resetErrors()
