@@ -36,10 +36,7 @@ class CreateSmsFlowBackTable extends Migration
             $table->string('GasVelocity', 20)->default(0)->nullable();
             $table->string('BSWatChoke', 20)->default(0)->nullable();
             $table->string('ProdLinePressure', 20)->default(0)->nullable();
-
-
-
-
+ 
 
             $table->string('SEPARATOR_SeparatorPressure', 20)->default(0)->nullable();
             $table->string('SEPARATOR_GasTemp', 20)->default(0)->nullable();
@@ -91,8 +88,7 @@ class CreateSmsFlowBackTable extends Migration
             $table->string('CCA_9x13_F', 20)->default(0)->nullable();
             $table->string('CCA_13x18_Psig', 20)->default(0)->nullable();
             $table->string('CCA_13x18_F', 20)->default(0)->nullable();
-
-
+ 
             $table->string('VENTURI_StaticPressure', 20)->default(0)->nullable();
             $table->string('VENTURI_DiffPressure', 20)->default(0)->nullable();
             $table->string('VENTURI_Temp', 20)->default(0)->nullable();
