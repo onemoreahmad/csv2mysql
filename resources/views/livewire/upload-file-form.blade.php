@@ -1,3 +1,12 @@
+<div>
+  @if ($success)
+  <div class="text-green-600 p-2 rounded-sm bg-green-100 border border-green-200 mb-3">
+      Data imported successfully! 
+      <button class="underline font-bold" wire:click.prevent="$set('success', false)"> X </button>
+  </div>
+  @endif
+
+
 <div x-data="{ open: false }" class="mb-10">
   <button @click="open = ! open" class="p-3 rounded border bg-gray-600 text-white hover:bg-gray-700 flex items-center gap-x-3 inline-block mb-3"> 
     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -10,12 +19,7 @@
     <form x-cloak x-show="open" wire:submit.prevent="submit" method="post" enctype="multipart/form-data" class="bg-white p-5 rounded-sm my-3 block">
         @csrf
 
-        @if ($success)
-        <div class="text-green-600 p-2 rounded-sm bg-green-100 border border-green-200 mb-3">
-            Data imported successfully! 
-            <button class="underline font-bold" wire:click.prevent="$set('success', false)"> X </button>
-        </div>
-        @endif
+
 
         <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5">
             <div>
@@ -71,4 +75,5 @@
                 <span wire:loading wire:target="submit" class="text-indigo-400 text-sm mx-2">Please wait, uploading file ..</span>
         </p>
     </form>
+</div>
 </div>
