@@ -33,7 +33,14 @@ class SMSFlowBackImport implements ToModel, WithStartRow
         $model->Date = \Carbon\Carbon::parse($row[1]); 
         $model->Remarks = data_get($row, '2', 0);
         $model->ChokeSize1 = data_get($row, '3', 0);
-        $model->US_DesanderPressurePressure = data_get($row, '4', 0);
+        
+        // for testing 
+        if($this->fieldName == 'bri_test'){
+            $model->US_DesanderPressurePressure = data_get($row, '4')  > 0 ? (integer)data_get($row, '4', 0) + 1200 : data_get($row, '4', 0);
+        }else {
+            $model->US_DesanderPressurePressure = data_get($row, '4', 0) ;
+        }
+
         $model->US_FilterPressure = data_get($row, '5', 0);
         $model->US_ChokePressure1 = data_get($row, '6', 0);
         $model->US_DesanderTemperatureTemp = data_get($row, '7', 0);

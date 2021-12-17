@@ -19,8 +19,8 @@ class Chart1 extends Component
 
         // If you want to see data in date range, use this
         $this->info = SMSFlowBack::select('well_name', 'Date', 'US_DesanderPressurePressure')
-            ->whereDate('Date', '>=', '2020-01-01')
-            ->whereDate('Date', '<=', '2022-09-30')
+            // ->whereDate('Date', '>=', '2020-01-01')
+            // ->whereDate('Date', '<=', '2022-09-30')
             ->whereNotNull('US_DesanderPressurePressure')
             ->orderBy('Date')->get();
     }
