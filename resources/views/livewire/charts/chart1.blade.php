@@ -40,14 +40,14 @@
                 var options = {
                     series: series,
                     chart: {
-                        type: 'line',
+                        type: 'area',
                         stacked: false,
                         height: 350,
                         zoom: {
                             enabled: false
                         },
                         animations: {
-                            enabled: false
+                            enabled: true
                         },
                         markers: {
                             size: 0,
@@ -87,6 +87,11 @@
                     },
                     tooltip: {
                         shared: true
+                    },
+                    stroke: {
+                        show: true,
+                        width: 2,
+                        //colors: ['transparent']
                     },
                     legend: {
                         position: 'top',

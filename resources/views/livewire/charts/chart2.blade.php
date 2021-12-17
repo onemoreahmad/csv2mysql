@@ -52,11 +52,6 @@
                     dataLabels: {
                         enabled: false
                     },
-                    stroke: {
-                        show: true,
-                        width: 2,
-                        colors: ['transparent']
-                    },
                     xaxis: {
                         categories: wellNamesArr,
                     },
