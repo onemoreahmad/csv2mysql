@@ -10,12 +10,14 @@
                     if (acc[item.well_name]) {
                         return {
                             ...acc,
-                            [item.well_name]: [...acc[item.well_name], item.US_DesanderPressurePressure]
+                            [item.well_name]: [...acc[item.well_name], parseFloat((item
+                                .US_DesanderPressurePressure || "0").replace(/,/g, ''))]
                         };
                     } else {
                         return {
                             ...acc,
-                            [item.well_name]: [item.US_DesanderPressurePressure]
+                            [item.well_name]: [parseFloat((item
+                                .US_DesanderPressurePressure || "0").replace(/,/g, ''))]
                         };
                     }
                 }, {});
@@ -35,7 +37,10 @@
                     }],
                     chart: {
                         type: 'bar',
-                        height: 350
+                        height: 350,
+                        animations: {
+                            enabled: false
+                        }
                     },
                     plotOptions: {
                         bar: {
@@ -59,9 +64,6 @@
                         title: {
                             text: 'US_DesanderPressurePressure'
                         }
-                    },
-                    fill: {
-                        opacity: 1
                     },
                     tooltip: {
                         y: {

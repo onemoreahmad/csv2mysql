@@ -13,8 +13,8 @@
                             ...acc,
                             [item.well_name]: [...acc[item.well_name],
                                 [
-                                    item.Date,
-                                    item.US_DesanderPressurePressure
+                                    new Date(item.Date),
+                                    parseFloat((item.US_DesanderPressurePressure || "0").replace(/,/g, ''))
                                 ]
                             ]
                         };
@@ -23,8 +23,8 @@
                             ...acc,
                             [item.well_name]: [
                                 [
-                                    item.Date,
-                                    item.US_DesanderPressurePressure
+                                    new Date(item.Date),
+                                    parseFloat((item.US_DesanderPressurePressure || "0").replace(/,/g, ''))
                                 ]
                             ]
                         };
@@ -40,11 +40,17 @@
                 var options = {
                     series: series,
                     chart: {
-                        type: 'area',
+                        type: 'line',
                         stacked: false,
                         height: 350,
                         zoom: {
                             enabled: false
+                        },
+                        animations: {
+                            enabled: false
+                        },
+                        markers: {
+                            size: 0,
                         },
                     },
                     dataLabels: {
@@ -52,16 +58,6 @@
                     },
                     markers: {
                         size: 0,
-                    },
-                    fill: {
-                        type: 'gradient',
-                        gradient: {
-                            shadeIntensity: 1,
-                            inverseColors: false,
-                            opacityFrom: 0.45,
-                            opacityTo: 0.05,
-                            stops: [20, 100, 100, 100]
-                        },
                     },
                     yaxis: {
                         labels: {

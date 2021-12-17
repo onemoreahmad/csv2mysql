@@ -11,7 +11,7 @@ class Chart3Test extends Component
  
     public function mount()
     {
-        $this->info = SMSFlowBack::orderBy('Date')->get();
+        // $this->info = SMSFlowBack::orderBy('Date')->get();
     }
 
     public function render()

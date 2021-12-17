@@ -10,14 +10,15 @@ class Chart1 extends Component
     public $info;
  
     public function mount()
-    { 
-        // $this->info = SMSFlowBack::limit(12)
-        // ->get()
-        // ->mapWithKeys(function ($item, $key) {
-        //     return   [ $item['Date'] => $item['US_DesanderPressurePressure']  ];
-        // });
+    {
+        // If you want to see all raw data, use this
+        // $this->info = SMSFlowBack::select('well_name', 'Date', 'US_DesanderPressurePressure')->orderBy('Date')->get();
 
-        $this->info = SMSFlowBack::orderBy('Date')->get();
+        // If you want to remove NULL values from US_DesanderPressurePressure, use this
+        // $this->info = SMSFlowBack::select('well_name', 'Date', 'US_DesanderPressurePressure')->whereNotNull('US_DesanderPressurePressure')->orderBy('Date')->get();
+
+        // If you want to see data in date range, use this
+        $this->info = SMSFlowBack::select('well_name', 'Date', 'US_DesanderPressurePressure')->whereDate('Date', '>=', '2021-01-01')->whereDate('Date', '<=', '2021-09-30')->whereNotNull('US_DesanderPressurePressure')->orderBy('Date')->get();
     }
 
     public function render()

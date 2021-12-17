@@ -11,7 +11,11 @@ class Chart2 extends Component
  
     public function mount()
     {
-        $this->info = SMSFlowBack::get();
+        // If you want to see not null values of US_DesanderPressurePressure, use this
+        $this->info = SMSFlowBack::select('well_name', 'US_DesanderPressurePressure')->whereNotNull('US_DesanderPressurePressure')->get();
+
+        // If you want to see all raw data, use this
+        // $this->info = SMSFlowBack::select('well_name', 'US_DesanderPressurePressure')->get();
     }
 
     public function render()
