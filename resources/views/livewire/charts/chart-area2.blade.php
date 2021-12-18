@@ -1,4 +1,4 @@
-<div class="bg-white p-4" id="chart1">
+<div class="bg-white p-4" id="chart-aera2">
 
     @push('js')
         <script>
@@ -65,6 +65,7 @@
                                 colors: '#8e8da4',
                             },
                             offsetX: 0,
+                           
                         },
                         axisBorder: {
                             show: false,
@@ -77,11 +78,16 @@
                         type: 'datetime',
                         labels: {
                             rotate: -20,
-                            rotateAlways: true
+                            rotateAlways: true,
+                            // formatter: function(val, timestamp) {
+                            //     // return val
+                            //     // return moment(new Date(val)).format("D/M - hh:mm")
+                            //     // return moment(new Date(timestamp)).format("DD MMM YYYY")
+                            // }
                         }
                     },
                     title: {
-                        text: 'Well data',
+                        text: 'Sep Pressure',
                         align: 'left',
                         offsetX: 14
                     },
@@ -99,7 +105,7 @@
                         offsetX: -10
                     }
                 };
-                var chart = new ApexCharts(document.querySelector("#chart1"), options);
+                var chart = new ApexCharts(document.querySelector("#chart-aera2"), options);
                 chart.render();
 
 

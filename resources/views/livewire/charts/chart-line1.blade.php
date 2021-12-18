@@ -1,4 +1,4 @@
-<div class="bg-white p-4" id="chart2">
+<div class="bg-white p-4" id="chart-line1">
 
     @push('js')
         <script>
@@ -57,8 +57,14 @@
                     },
                     yaxis: {
                         title: {
-                            text: 'US_DesanderPressurePressure'
+                            text: 'U/S Desander Pressure',
+                            
                         }
+                    },
+                    title: {
+                        text: 'U/S Desander Pressure',
+                        align: 'left',
+                        offsetX: 14
                     },
                     tooltip: {
                         y: {
@@ -69,7 +75,7 @@
                     }
                 };
 
-                var chart = new ApexCharts(document.querySelector("#chart2"), options);
+                var chart = new ApexCharts(document.querySelector("#chart-line1"), options);
                 chart.render();
 
             })

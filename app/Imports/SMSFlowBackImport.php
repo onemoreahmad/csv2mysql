@@ -37,8 +37,12 @@ class SMSFlowBackImport implements ToModel, WithStartRow
         // for testing 
         if($this->fieldName == 'bri_test'){
             $model->US_DesanderPressurePressure = data_get($row, '4')  > 0 ? (integer)data_get($row, '4', 0) + 1200 : data_get($row, '4', 0);
+            $model->SEPARATOR_SeparatorPressure = data_get($row, '16')  > 0 ? (integer)data_get($row, '16', 0) + 130 : data_get($row, '4', 0);
+            $model->SEPARATOR_GasTemp = data_get($row, '17')  > 0 ? (integer)data_get($row, '17', 0) + 50 : data_get($row, '4', 0);
         }else {
             $model->US_DesanderPressurePressure = data_get($row, '4', 0) ;
+            $model->SEPARATOR_SeparatorPressure = data_get($row, '16', 0);
+            $model->SEPARATOR_GasTemp = data_get($row, '17', 0);
         }
 
         $model->US_FilterPressure = data_get($row, '5', 0);
@@ -53,8 +57,6 @@ class SMSFlowBackImport implements ToModel, WithStartRow
         $model->BSWatChoke = data_get($row, '14', 0);
         $model->ProdLinePressure = data_get($row, '15', 0);
 
-        $model->SEPARATOR_SeparatorPressure = data_get($row, '16', 0);
-        $model->SEPARATOR_GasTemp = data_get($row, '17', 0);
         $model->SEPARATOR_DiffPressure = data_get($row, '18', 0);
         $model->SEPARATOR_BSWatOiline = data_get($row, '19', 0);
         $model->SEPARATOR_OrifPlateSizeDiam = data_get($row, '20', 0);

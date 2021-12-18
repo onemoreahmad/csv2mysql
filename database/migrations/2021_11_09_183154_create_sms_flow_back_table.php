@@ -21,7 +21,7 @@ class CreateSmsFlowBackTable extends Migration
             $table->string('well_name', 50)->nullable()->index();
             $table->string('well_number', 10)->nullable()->index();
 
-            $table->timestamp('Date')->nullable();
+            $table->timestamp('Date')->nullable()->index();
             $table->text('Remarks')->nullable();
             $table->string('ChokeSize1', 20)->default(0)->nullable();
             $table->string('US_DesanderPressurePressure', 20)->default(0)->nullable();

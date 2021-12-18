@@ -5,7 +5,7 @@ namespace App\Livewire\Charts;
 use Livewire\Component;
 use App\Models\SMSFlowBack;
  
-class Chart2 extends Component
+class ChartLine1 extends Component
 {
     public $info;
  
@@ -20,6 +20,6 @@ class Chart2 extends Component
 
     public function render()
     {
-        return view('livewire.charts.chart2');
+        return view('livewire.charts.chart-line1');
     }
 }
