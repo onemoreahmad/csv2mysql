@@ -5,14 +5,16 @@ namespace App\Livewire\Charts;
 use Livewire\Component;
 use App\Models\SMSFlowBack;
  
-class ChartLine1 extends Component
+class BarChartForWell extends Component
 {
+    public $wellFieldName;
+    public $chartTitle;
     public $info;
  
-    public function mount()
+    public function mount($wellFieldName)
     {
         // If you want to see not null values of US_DesanderPressurePressure, use this
-        $this->info = SMSFlowBack::select('well_name', 'US_DesanderPressurePressure')->whereNotNull('US_DesanderPressurePressure')->get();
+        $this->info = SMSFlowBack::select('well_name', $wellFieldName)->whereNotNull($wellFieldName)->get();
 
         // If you want to see all raw data, use this
         // $this->info = SMSFlowBack::select('well_name', 'US_DesanderPressurePressure')->get();
@@ -20,6 +22,6 @@ class ChartLine1 extends Component
 
     public function render()
     {
-        return view('livewire.charts.chart-line1');
+        return view('livewire.charts.bar-chart-for-well');
     }
 }

@@ -1,23 +1,24 @@
-<div class="bg-white p-4" id="chart-line1">
+<div class="bg-white p-4" id="chart-line-{{ $wellFieldName }}">
 
     @push('js')
         <script>
             document.addEventListener('livewire:load', function() {
-                const data = @js($info);
+                // Get raw table rows
+                const wellTableRows = @js($info);
+                const wellFieldName = @js($wellFieldName);
+                const chartTitle = @js($chartTitle);
 
-                // Get object of arrays grouped by well name, in which values are US_DesanderPressurePressure
-                const seriesData = data.reduce((acc, item) => {
+                // Get object of arrays grouped by well name, in which values are well field name
+                const seriesData = wellTableRows.reduce((acc, item) => {
                     if (acc[item.well_name]) {
                         return {
                             ...acc,
-                            [item.well_name]: [...acc[item.well_name], parseFloat((item
-                                .US_DesanderPressurePressure || "0").replace(/,/g, ''))]
+                            [item.well_name]: [...acc[item.well_name], parseFloat((item[wellFieldName] || "0").replace(/,/g, ''))]
                         };
                     } else {
                         return {
                             ...acc,
-                            [item.well_name]: [parseFloat((item
-                                .US_DesanderPressurePressure || "0").replace(/,/g, ''))]
+                            [item.well_name]: [parseFloat((item[wellFieldName] || "0").replace(/,/g, ''))]
                         };
                     }
                 }, {});
@@ -57,25 +58,24 @@
                     },
                     yaxis: {
                         title: {
-                            text: 'U/S Desander Pressure',
-                            
+                            text: wellFieldName,                            
                         }
                     },
                     title: {
-                        text: 'U/S Desander Pressure',
+                        text: chartTitle,
                         align: 'left',
                         offsetX: 14
                     },
                     tooltip: {
                         y: {
                             formatter: function(val) {
-                                return "US_DesanderPressurePressure"
+                                return val;
                             }
                         }
                     }
                 };
 
-                var chart = new ApexCharts(document.querySelector("#chart-line1"), options);
+                var chart = new ApexCharts(document.querySelector("#chart-line-"+wellFieldName), options);
                 chart.render();
 
             })
