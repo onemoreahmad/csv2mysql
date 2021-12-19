@@ -1,5 +1,5 @@
 <div>
-    <livewire:charts.filter-charts />
+    {{-- <livewire:charts.filter-charts /> --}}
 
     <div class="grid xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-2 gap-6 items-baseline">
         <div class="grid grid-cols-1 gap-6">
