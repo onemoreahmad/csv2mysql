@@ -10,6 +10,9 @@ class FilterCharts extends Component
     public $all = true;
     public $wells = [];
     public $selectedWells = [];
+    protected $queryString = [
+        'selectedWells' => ['except' => ''] 
+    ];
 
     public function mount()
     {
